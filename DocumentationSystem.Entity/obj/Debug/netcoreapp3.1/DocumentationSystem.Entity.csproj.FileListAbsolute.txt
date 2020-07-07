@@ -1,0 +1,9 @@
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Entity\bin\Debug\netcoreapp3.1\DocumentationSystem.Entity.deps.json
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Entity\bin\Debug\netcoreapp3.1\DocumentationSystem.Entity.dll
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Entity\obj\Debug\netcoreapp3.1\DocumentationSystem.Entity.csprojAssemblyReference.cache
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Entity\obj\Debug\netcoreapp3.1\DocumentationSystem.Entity.AssemblyInfoInputs.cache
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Entity\obj\Debug\netcoreapp3.1\DocumentationSystem.Entity.AssemblyInfo.cs
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Entity\bin\Debug\netcoreapp3.1\DocumentationSystem.Entity.pdb
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Entity\obj\Debug\netcoreapp3.1\DocumentationSystem.Entity.csproj.CoreCompileInputs.cache
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Entity\obj\Debug\netcoreapp3.1\DocumentationSystem.Entity.dll
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Entity\obj\Debug\netcoreapp3.1\DocumentationSystem.Entity.pdb

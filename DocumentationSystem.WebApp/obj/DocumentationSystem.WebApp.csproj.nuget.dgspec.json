@@ -1,0 +1,293 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.WebApp\\DocumentationSystem.WebApp.csproj": {}
+  },
+  "projects": {
+    "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Business\\DocumentationSystem.Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Business\\DocumentationSystem.Business.csproj",
+        "projectName": "DocumentationSystem.Business",
+        "projectPath": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Business\\DocumentationSystem.Business.csproj",
+        "packagesPath": "C:\\Users\\Goceren\\.nuget\\packages\\",
+        "outputPath": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Business\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Goceren\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.DataAccess\\DocumentationSystem.DataAccess.csproj": {
+                "projectPath": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.DataAccess\\DocumentationSystem.DataAccess.csproj"
+              },
+              "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Entity\\DocumentationSystem.Entity.csproj": {
+                "projectPath": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Entity\\DocumentationSystem.Entity.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.DataAccess\\DocumentationSystem.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.DataAccess\\DocumentationSystem.DataAccess.csproj",
+        "projectName": "DocumentationSystem.DataAccess",
+        "projectPath": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.DataAccess\\DocumentationSystem.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Goceren\\.nuget\\packages\\",
+        "outputPath": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Goceren\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Entity\\DocumentationSystem.Entity.csproj": {
+                "projectPath": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Entity\\DocumentationSystem.Entity.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Entity\\DocumentationSystem.Entity.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Entity\\DocumentationSystem.Entity.csproj",
+        "projectName": "DocumentationSystem.Entity",
+        "projectPath": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Entity\\DocumentationSystem.Entity.csproj",
+        "packagesPath": "C:\\Users\\Goceren\\.nuget\\packages\\",
+        "outputPath": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Entity\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Goceren\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.WebApp\\DocumentationSystem.WebApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.WebApp\\DocumentationSystem.WebApp.csproj",
+        "projectName": "DocumentationSystem.WebApp",
+        "projectPath": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.WebApp\\DocumentationSystem.WebApp.csproj",
+        "packagesPath": "C:\\Users\\Goceren\\.nuget\\packages\\",
+        "outputPath": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.WebApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Goceren\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Business\\DocumentationSystem.Business.csproj": {
+                "projectPath": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.Business\\DocumentationSystem.Business.csproj"
+              },
+              "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.DataAccess\\DocumentationSystem.DataAccess.csproj": {
+                "projectPath": "D:\\ProjectFolders\\GitHub\\MVC\\DocumentationSystem\\DocumentationSystem.DataAccess\\DocumentationSystem.DataAccess.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

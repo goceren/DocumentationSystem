@@ -1,0 +1,14 @@
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\bin\Debug\netcoreapp3.1\DocumentationSystem.Business.deps.json
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\bin\Debug\netcoreapp3.1\DocumentationSystem.Business.dll
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\bin\Debug\netcoreapp3.1\DocumentationSystem.Business.pdb
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\bin\Debug\netcoreapp3.1\DocumentationSystem.Entity.dll
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\bin\Debug\netcoreapp3.1\DocumentationSystem.Entity.pdb
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\obj\Debug\netcoreapp3.1\DocumentationSystem.Business.csprojAssemblyReference.cache
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\obj\Debug\netcoreapp3.1\DocumentationSystem.Business.AssemblyInfoInputs.cache
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\obj\Debug\netcoreapp3.1\DocumentationSystem.Business.AssemblyInfo.cs
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\obj\Debug\netcoreapp3.1\DocumentationSystem.Business.csproj.CoreCompileInputs.cache
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\obj\Debug\netcoreapp3.1\DocumentationSystem.Business.csproj.CopyComplete
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\obj\Debug\netcoreapp3.1\DocumentationSystem.Business.dll
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\obj\Debug\netcoreapp3.1\DocumentationSystem.Business.pdb
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\bin\Debug\netcoreapp3.1\DocumentationSystem.DataAccess.dll
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.Business\bin\Debug\netcoreapp3.1\DocumentationSystem.DataAccess.pdb
