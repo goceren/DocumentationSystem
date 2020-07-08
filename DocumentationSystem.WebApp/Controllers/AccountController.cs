@@ -63,7 +63,7 @@ namespace DocumentationSystem.WebApp.Controllers
             var result = await _signinManager.PasswordSignInAsync(user, loginModel.Password, false, true);
             if (result.Succeeded)
             {
-                return Redirect("/");
+                return Redirect(loginModel.returnUrl ?? "~/");
             }
             ModelState.AddModelError("", "Email yada şifre yanlış");
             return View(loginModel);

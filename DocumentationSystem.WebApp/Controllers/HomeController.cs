@@ -12,8 +12,6 @@ namespace DocumentationSystem.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-
-
         public HomeController()
         {
         }
