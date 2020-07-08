@@ -1,0 +1,84 @@
+﻿@model RegisterModel
+
+<div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-4">
+        <div class="register-box">
+            <div class="register-logo">
+                <img src="~/img/login.jpg" alt="Erciyes University" />
+            </div>
+        </div>
+    </div>
+    <div class="col-4 mt-5">
+        <div class="login-box">
+            <div class="card">
+                <div class="card-body register-card-body">
+                    <p class="login-box-msg">Kayıt Sayfası</p>
+                    <form asp-controller="Account" asp-action="Register" method="post">
+                        <div class="text-danger" asp-validation-summary="All"></div>
+                        <span asp-validation-for="NameSurname" class="text-danger"></span>
+                        <div class="input-group mb-3">
+                            <input asp-for="NameSurname" value="@Model.NameSurname" type="text" class="form-control" placeholder="Adı Soyadı">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select asp-for="DepartmentId" asp-items="ViewBag.departments" class="form-control">
+                                <option disabled selected value="">Departman Seçiniz</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="DepartmentId"></span>
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <div class="input-group mb-3">
+                            <input asp-for="Email" value="@Model.Email" type="email" class="form-control" placeholder="Email">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <div class="input-group mb-3">
+                            <input asp-for="Password" value="@Model.Password" type="password" class="form-control" placeholder="Şifre">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="RePassword" class="text-danger"></span>
+                        <div class="input-group mb-3">
+                            <input asp-for="RePassword" value="@Model.RePassword" type="password" class="form-control" placeholder="Şifre Tekrarı">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-block btn-flat">Kayıt Ol</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="social-auth-links text-center">
+                        <p>- VEYA -</p>
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-block btn-danger">
+                            Giriş Yap
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@model LoginModel
+
+<div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-4">
+        <div class="login-box">
+            <div class="login-logo">
+                <img src="~/img/login.jpg" alt="Erciyes University" />
+            </div>
+        </div>
+
+    </div>
+    <div class="col-4 mt-5">
+        <div class="login-box">
+            <div class="card">
+                <div class="card-body login-card-body">
+                    <p class="login-box-msg">Giriş Yap</p>
+                    <form asp-controller="Account" asp-action="Login" method="post">
+                        <div class="text-danger" asp-validation-summary="All"></div>
+                        <input type="hidden" value="@Model.returnUrl" name="returnUrl" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <div class="input-group mb-3">
+                            <input asp-for="Email" value="@Model.Email" type="email" class="form-control" placeholder="Email">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <div class="input-group mb-3">
+                            <input asp-for="Password" value="@Model.Password" type="password" class="form-control" placeholder="Şifre">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-block btn-flat">Giriş</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="social-auth-links text-center mb-3">
+                        <p>- VEYA -</p>
+                        <a asp-controller="Account" asp-action="Register" class="btn btn-block btn-danger">
+                            Kayıt ol
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+
+    </div>
+</div>

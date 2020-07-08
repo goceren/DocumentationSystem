@@ -20,6 +20,12 @@ namespace DocumentationSystem.DataAccess.Concrete.EFCore
 
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Data Source=Goceren;Initial Catalog=DocumentationSystem;Integrated Security=True; Trusted_Connection=true; MultipleActiveResultSets=true;");
+            
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<DocSysDocumentUser>()
