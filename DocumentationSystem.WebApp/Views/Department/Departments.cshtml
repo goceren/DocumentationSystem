@@ -1,0 +1,178 @@
+﻿@model IEnumerable<DepartmentModel>
+
+<div class="container mt-4">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Departmanlar</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Aktif Departmanlar</h3>
+                </div>
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Departman Adı</th>
+                                <th>Departman Detayları</th>
+                                <th>Telefon</th>
+                                <th>Oluşturulma Tarihi</th>
+                                <th>Aktiflik</th>
+                                <th>
+                                    <a class="btn btn-primary btn-sm text-center" asp-controller="Department" asp-action="CreateDepartment">
+                                        <i class="fas fa-plus">
+                                        </i>
+                                        Yeni Ekle
+                                    </a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="form-group">
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    if (!item.DepartmentIsDeleted)
+                                    {
+                                        <tr>
+                                            <td style="width: 5%">
+                                                <a>@item.DepartmentId</a>
+                                            </td>
+                                            <td style="width: 15%">
+                                                <a>
+                                                    @item.DepartmentName
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    @item.DeparmentDetail
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    @item.DepartmentPhone
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a>
+                                                    @item.DepartmentCreatedDate
+                                                </a>
+                                            </td>
+                                            <td class="project-state">
+                                                @if (item.DepartmentIsActive)
+                                                {
+                                                    <span class="badge badge-success text-center">Aktif</span> }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger text-center">Pasif</span>}
+                                            </td>
+                                            <td class="project-actions text-center">
+                                                <a id="btn1" class="btn btn-info btn-sm" asp-controller="Department" asp-action="EditDepartment" asp-route-id="@item.DepartmentId">
+                                                    <i class="fas fa-edit">
+                                                    </i>
+                                                    Düzenle
+                                                </a>
+                                                <a onclick="return confirm('@item.DepartmentId Id Numaralı, @item.DepartmentName isimli departmanı silmek istediğinize emin misiniz ?')" class="btn btn-danger btn-sm" asp-controller="Department" asp-action="DeleteDepartment" asp-route-id="@item.DepartmentId">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Sil
+                                                </a>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Silinen Departmanlar</h3>
+                </div>
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Departman Adı</th>
+                                <th>Departman Detayları</th>
+                                <th>Telefon</th>
+                                <th>Oluşturulma Tarihi</th>
+                                <th>Aktiflik</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="form-group">
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    if (item.DepartmentIsDeleted)
+                                    {
+                                        <tr>
+                                            <td style="width: 5%">
+                                                <a>@item.DepartmentId</a>
+                                            </td>
+                                            <td style="width: 15%">
+                                                <a>
+                                                    @item.DepartmentName
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    @item.DeparmentDetail
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    @item.DepartmentPhone
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a>
+                                                    @item.DepartmentCreatedDate
+                                                </a>
+                                            </td>
+                                            <td class="project-state">
+                                                @if (item.DepartmentIsActive)
+                                                {
+                                                    <span class="badge badge-success text-center">Aktif</span> }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger text-center">Pasif</span>}
+                                            </td>
+                                            <td class="project-actions text-center">
+                                                <a id="btn1" class="btn btn-info btn-sm" asp-controller="Department" asp-action="EditDepartment" asp-route-id="@item.DepartmentId">
+                                                    <i class="fas fa-edit">
+                                                    </i>
+                                                    Düzenle
+                                                </a>
+                                                <a onclick="return confirm('@item.DepartmentId Id Numaralı, @item.DepartmentName isimli departmanı geri almak istediğinize emin misiniz ?')" class="btn btn-danger btn-sm" asp-controller="Department" asp-action="UnDeleteDepartment" asp-route-id="@item.DepartmentId">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Sil
+                                                </a>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

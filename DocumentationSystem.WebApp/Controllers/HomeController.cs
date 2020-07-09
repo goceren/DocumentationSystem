@@ -7,16 +7,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DocumentationSystem.WebApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using DocumentationSystem.Entity;
 
 namespace DocumentationSystem.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        private readonly UserManager<DocSysUser> _userManager;
+        
+        public HomeController(UserManager<DocSysUser> userManager)
         {
+            _userManager = userManager;
         }
-        public IActionResult Index()
+        public IActionResult IndexAsync()
         {
+            ViewBag.UserCount = _userManager.Users.Where(i => i.isApprovedByAdmin).Count();
             return View();
         }
 

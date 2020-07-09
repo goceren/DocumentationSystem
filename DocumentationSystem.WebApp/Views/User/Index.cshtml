@@ -1,0 +1,183 @@
+﻿@model IEnumerable<UserModel>
+
+<div class="container mt-4">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Aktif Kullanıcılar</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Kullanıcılar</h3>
+                </div>
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Adı Soyadı</th>
+                                <th>Email</th>
+                                <th>Telefon</th>
+                                <th>Rolü</th>
+                                <th>Departmanı</th>
+                                <th>Onay</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="form-group">
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    if (!item.isDeleted)
+                                    {
+                                        <tr>
+                                            <td style="width: 10%">
+                                                <a>@item.ID</a>
+                                            </td>
+                                            <td style="width: 13%">
+                                                <a>
+                                                    @item.NameSurname
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    @item.Email
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    @item.Phone
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a>
+                                                    @item.RoleId
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a>
+                                                    @item.Department.DepartmentName
+                                                </a>
+                                            </td>
+                                            <td class="project-state">
+                                                @if (item.isApprovedByAdmin)
+                                                {
+                                                    <span class="badge badge-success text-center">Aktif</span> }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger text-center">Pasif</span>}
+                                            </td>
+                                            <td class="project-actions text-center">
+                                                <a id="btn1" class="btn btn-info btn-sm" asp-controller="User" asp-action="EditUser" asp-route-email="@item.Email">
+                                                    <i class="fas fa-edit">
+                                                    </i>
+                                                    Düzenle
+                                                </a>
+                                                <a onclick="return confirm('@item.Email email adresli, @item.NameSurname isimli kullanıcıyı silmek istediğinize emin misiniz ?')" class="btn btn-danger btn-sm" asp-controller="User" asp-action="DeleteUser" asp-route-email="@item.Email">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Sil
+                                                </a>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Silinen Kullanıcılar</h3>
+                </div>
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Adı Soyadı</th>
+                                <th>Email</th>
+                                <th>Telefon</th>
+                                <th>Rolü</th>
+                                <th>Departmanı</th>
+                                <th>Onay</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="form-group">
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    if (item.isDeleted)
+                                    {
+                                        <tr>
+                                            <td style="width: 10%">
+                                                <a>@item.ID</a>
+                                            </td>
+                                            <td style="width: 13%">
+                                                <a>
+                                                    @item.NameSurname
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    @item.Email
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    @item.Phone
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a>
+                                                    @item.RoleId
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a>
+                                                    @item.Department.DepartmentName
+                                                </a>
+                                            </td>
+                                            <td class="project-state">
+                                                @if (item.isApprovedByAdmin)
+                                                {
+                                                    <span class="badge badge-success text-center">Aktif</span> }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger text-center">Pasif</span>}
+                                            </td>
+                                            <td class="project-actions text-center">
+                                                <a id="btn1" class="btn btn-info btn-sm" asp-controller="User" asp-action="EditUser" asp-route-email="@item.Email">
+                                                    <i class="fas fa-edit">
+                                                    </i>
+                                                    Düzenle
+                                                </a>
+                                                <a onclick="return confirm('@item.Email email adresli, @item.NameSurname isimli kullanıcıyı tekrar aktif etmek istediğinize emin misiniz ?')" class="btn btn-danger btn-sm" asp-controller="User" asp-action="UnDeleteUser" asp-route-email="@item.Email">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Sil
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

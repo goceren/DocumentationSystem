@@ -1,0 +1,74 @@
+﻿@model UserModel
+
+<div class="container mt-4">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Kullanıcı Düzenle</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @if (Model != null)
+        {
+<form asp-controller="User" asp-action="EditUser" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="ID" />
+    <section class="content p-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Detaylar</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="NameSurname">Adı Soyadı</label>
+                            <input asp-for="NameSurname" type="text" class="form-control">
+                            <span class="text-danger" asp-validation-for="NameSurname"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DepartmentId">Departmanı</label>
+                            <select asp-for="DepartmentId" asp-items="ViewBag.departments" class="form-control">
+                            </select>
+                            <span class="text-danger" asp-validation-for="DepartmentId"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email">Email</label>
+                            <input asp-for="Email" type="email" class="form-control">
+                            <span class="text-danger" asp-validation-for="Email"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Phone">Telefon</label>
+                            <input asp-for="Phone" type="text" class="form-control">
+                            <span class="text-danger" asp-validation-for="Phone"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="RoleId">Rolü</label>
+                            <select asp-for="RoleId" asp-items="ViewBag.roles" class="form-control">
+                            </select>
+                            <span class="text-danger" asp-validation-for="RoleId"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>User Is Approved</label>
+                            <div class="custom-control custom-checkbox">
+                                <input asp-for="isApprovedByAdmin" class="custom-control-input" type="checkbox">
+                                <label asp-for="isApprovedByAdmin" class="custom-control-label">Aktif</label>
+                                <span class="text-danger" asp-validation-for="isApprovedByAdmin"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pb-4">
+            <div class="col-12">
+                <a asp-controller="User" asp-action="Index" class="btn btn-danger btn-lg">Vazgeç</a>
+                <input type="submit" value="Güncelle" class="btn btn-success float-right btn-lg">
+            </div>
+        </div>
+    </section>
+</form>}
+    </div>
+</div>

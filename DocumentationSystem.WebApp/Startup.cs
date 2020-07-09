@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 
 namespace DocumentationSystem.WebApp
 {
@@ -69,7 +70,10 @@ namespace DocumentationSystem.WebApp
             services.AddScoped<IDocSysDepartmentsDAL, EFCoreDocSysDepartmentsDAL>();
             services.AddScoped<IDepartmentService, DepartmentsManager>();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<DocSysUser> userManager, RoleManager<IdentityRole> roleManager)

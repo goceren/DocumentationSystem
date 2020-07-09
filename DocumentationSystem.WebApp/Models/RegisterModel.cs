@@ -11,6 +11,9 @@ namespace DocumentationSystem.WebApp.Models
         [Required(ErrorMessage = "Boş olamaz")]
         public string NameSurname { get; set; }
 
+        [Required(ErrorMessage = "Boş olamaz")]
+        public string Phone { get; set; }
+
         public string ProfilePhoto { get; set; }
         public bool isApprovedByAdmin { get; set; }
 

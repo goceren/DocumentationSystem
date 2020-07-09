@@ -32,6 +32,15 @@
                             </select>
                             <span class="text-danger" asp-validation-for="DepartmentId"></span>
                         </div>
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                        <div class="input-group mb-3">
+                            <input asp-for="Phone" value="@Model.Phone" type="tel" class="form-control" placeholder="Telefon">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-phone"></span>
+                                </div>
+                            </div>
+                        </div>
                         <span asp-validation-for="Email" class="text-danger"></span>
                         <div class="input-group mb-3">
                             <input asp-for="Email" value="@Model.Email" type="email" class="form-control" placeholder="Email">
@@ -41,6 +50,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <span asp-validation-for="Password" class="text-danger"></span>
                         <div class="input-group mb-3">
                             <input asp-for="Password" value="@Model.Password" type="password" class="form-control" placeholder="Şifre">

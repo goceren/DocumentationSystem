@@ -1,0 +1,54 @@
+﻿@model IEnumerable<GetRoleModel>
+@{
+    ViewData["Title"] = "Role";
+}
+
+
+
+<div class="container mt-4">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Roller</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Aktif Roller</h3>
+                </div>
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Rol Adı</th>
+                            </tr>
+                        </thead>
+                        <tbody class="form-group">
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a>@item.Id</a>
+                                        </td>
+                                        <td>
+                                            <a>
+                                                @item.Name
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

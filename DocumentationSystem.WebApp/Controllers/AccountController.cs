@@ -5,6 +5,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using DocumentationSystem.Business.Abstract;
 using DocumentationSystem.Entity;
+using DocumentationSystem.WebApp.Extensions;
 using DocumentationSystem.WebApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -60,6 +61,11 @@ namespace DocumentationSystem.WebApp.Controllers
                 ModelState.AddModelError("", "Bu email ile daha önce hesap oluşturulmamış.");
                 return View(loginModel);
             }
+            if (user.isDeleted)
+            {
+                ModelState.AddModelError("", "Kullanıcı silinmiş lütfen yetkiliden yardım isteyiniz.");
+                return View(loginModel);
+            }
             var result = await _signinManager.PasswordSignInAsync(user, loginModel.Password, false, true);
             if (result.Succeeded)
             {
@@ -91,6 +97,7 @@ namespace DocumentationSystem.WebApp.Controllers
                 NameSurname = registerModel.NameSurname,
                 DepartmentId = registerModel.DepartmentId,
                 ProfilePhoto = "",
+                PhoneNumber = registerModel.Phone,
                 isApprovedByAdmin = false,
             };
             var result = await _userManager.CreateAsync(user, registerModel.Password);
@@ -101,6 +108,18 @@ namespace DocumentationSystem.WebApp.Controllers
             }
             ModelState.AddModelError("", result.Errors.FirstOrDefault().Description);
             return View(registerModel);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signinManager.SignOutAsync();
+            TempData.Put("message", new ResultMessage()
+            {
+                Title = "Oturum Kapatıldı",
+                Message = "Hesabınızdan güvenli bir şekilde çıkış yapıldı.",
+                Css = "warning"
+            });
+            return RedirectToAction("login", "account");
         }
     }
 }

@@ -324,6 +324,9 @@ namespace DocumentationSystem.DataAccess.Migrations
                     b.Property<bool>("isApprovedByAdmin")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
+
                     b.HasIndex("DepartmentId");
 
                     b.HasDiscriminator().HasValue("DocSysUser");

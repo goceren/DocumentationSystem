@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="tr">
 
 <head>
@@ -8,6 +9,7 @@
     <title>Erciyes Üniversitesi Dökümantasyon Sistemi</title>
     <link rel="stylesheet" href="~/Site/lib/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="~/Site/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/Site/lib/datatables-bs4/css/dataTables.bootstrap4.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
@@ -37,34 +39,16 @@
                                     @{
                                         if (User.IsInRole("admin"))
                                         {
-                                            <li><a href="#" class="dropdown-item">Kullanıcılar</a></li>
-                                            <li><a href="#" class="dropdown-item">Roller</a></li>
-                                            <li><a href="#" class="dropdown-item">Departmanlar</a></li>
+                                            <li><a asp-controller="User" asp-action="Index" class="dropdown-item">Kullanıcılar</a></li>
+                                            <li><a asp-controller="Role" asp-action="Index" class="dropdown-item">Roller</a></li>
+                                            <li><a asp-controller="Department" asp-action="Index" class="dropdown-item">Departmanlar</a></li>
+                                            <li><a href="#" class="dropdown-item">Dökümanlar</a></li>
+
                                         }
                                     }
-                                    <li><a href="#" class="dropdown-item">Some other action</a></li>
-
                                     <li class="dropdown-divider"></li>
-
-                                    <li class="dropdown-submenu dropdown-hover">
-                                        <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
-                                        <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                            <li>
-                                                <a tabindex="-1" href="#" class="dropdown-item">level 2</a>
-                                            </li>
-
-                                            <li class="dropdown-submenu">
-                                                <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">level 2</a>
-                                                <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                                                    <li><a href="#" class="dropdown-item">3rd level</a></li>
-                                                    <li><a href="#" class="dropdown-item">3rd level</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li><a href="#" class="dropdown-item">level 2</a></li>
-                                            <li><a href="#" class="dropdown-item">level 2</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="#" class="dropdown-item">Bekleyen Dökümanlar</a></li>
+                                    <li><a href="#" class="dropdown-item">Bekleyen Kullanıcılar (<b>@ViewBag.UserCount</b>)</a></li>
                                 </ul>
                             </li>
                         }
@@ -92,34 +76,14 @@
                                     @{
                                         if (User.IsInRole("admin"))
                                         {
-                                            <li><a href="#" class="dropdown-item">Kullanıcılar</a></li>
-                                            <li><a href="#" class="dropdown-item">Roller</a></li>
-                                            <li><a href="#" class="dropdown-item">Departmanlar</a></li>
+                                            <li><a href="#" class="dropdown-item">Hesap Ayarları</a></li>
                                         }
                                     }
-                                    <li><a href="#" class="dropdown-item">Some other action</a></li>
+                                    <li><a asp-controller="Account" asp-action="Logout" class="dropdown-item">Some other action</a></li>
 
                                     <li class="dropdown-divider"></li>
+                                    <li><a asp-controller="Account" asp-action="Logout" class="dropdown-item">Some other action</a></li>
 
-                                    <li class="dropdown-submenu dropdown-hover">
-                                        <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
-                                        <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                            <li>
-                                                <a tabindex="-1" href="#" class="dropdown-item">level 2</a>
-                                            </li>
-
-                                            <li class="dropdown-submenu">
-                                                <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">level 2</a>
-                                                <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                                                    <li><a href="#" class="dropdown-item">3rd level</a></li>
-                                                    <li><a href="#" class="dropdown-item">3rd level</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li><a href="#" class="dropdown-item">level 2</a></li>
-                                            <li><a href="#" class="dropdown-item">level 2</a></li>
-                                        </ul>
-                                    </li>
                                 </ul>
                             </div>
                         }
@@ -135,12 +99,33 @@
                 </div>
             </div>
         </nav>
+        @{
+            if (TempData["message"] != null)
+            {
+                <partial name="_Alert" model="@(TempData.Get<ResultMessage>("message"))" />
+            }
+        }
         @RenderBody()
     </div>
 
     <script src="~/Site/lib/jquery/jquery.min.js"></script>
     <script src="~/Site/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/Site/js/adminlte.min.js"></script>
+    <script src="~/Site/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/Site/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
