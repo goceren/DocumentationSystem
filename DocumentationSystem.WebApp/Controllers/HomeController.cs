@@ -14,22 +14,9 @@ namespace DocumentationSystem.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserManager<DocSysUser> _userManager;
-        
-        public HomeController(UserManager<DocSysUser> userManager)
+        public IActionResult Index()
         {
-            _userManager = userManager;
-        }
-        public IActionResult IndexAsync()
-        {
-            ViewBag.UserCount = _userManager.Users.Where(i => i.isApprovedByAdmin).Count();
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

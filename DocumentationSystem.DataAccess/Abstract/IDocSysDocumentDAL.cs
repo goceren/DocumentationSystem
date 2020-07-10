@@ -7,5 +7,8 @@ namespace DocumentationSystem.DataAccess.Abstract
 {
     public interface IDocSysDocumentDAL : IRepository<DocSysDocument>
     {
+        List<DocSysDocument> GetByUserId(string Id);
+        DocSysDocument GetByIdWithDepartmentAndUser(int Id);
+        List<DocSysDocument> GetAllWithDepartmentAndUser();
     }
 }

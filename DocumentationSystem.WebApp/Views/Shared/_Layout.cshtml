@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/Site/lib/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="~/Site/css/adminlte.min.css">
     <link rel="stylesheet" href="~/Site/lib/datatables-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="~/Site/lib/summernote/summernote-bs4.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
@@ -36,19 +37,23 @@
                             <li class="nav-item dropdown">
                                 <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Panel</a>
                                 <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                    <li><a asp-controller="Document" asp-action="UserDocument" class="dropdown-item">Dökümantasyonlarım</a></li>
+
+                                    <li class="dropdown-divider"></li>
                                     @{
-                                        if (User.IsInRole("admin"))
+                                        if (User.IsInRole("admin") || User.IsInRole("staff"))
                                         {
                                             <li><a asp-controller="User" asp-action="Index" class="dropdown-item">Kullanıcılar</a></li>
-                                            <li><a asp-controller="Role" asp-action="Index" class="dropdown-item">Roller</a></li>
+                                            if (User.IsInRole("admin"))
+                                            {
+                                                <li><a asp-controller="Role" asp-action="Index" class="dropdown-item">Roller</a></li>
+                                            }
                                             <li><a asp-controller="Department" asp-action="Index" class="dropdown-item">Departmanlar</a></li>
-                                            <li><a href="#" class="dropdown-item">Dökümanlar</a></li>
-
+                                            <li><a asp-controller="Document" asp-action="Index" class="dropdown-item">Dökümantasyonlar</a></li>
                                         }
                                     }
                                     <li class="dropdown-divider"></li>
-                                    <li><a href="#" class="dropdown-item">Bekleyen Dökümanlar</a></li>
-                                    <li><a href="#" class="dropdown-item">Bekleyen Kullanıcılar (<b>@ViewBag.UserCount</b>)</a></li>
+                                    @await Component.InvokeAsync("Counts")
                                 </ul>
                             </li>
                         }
@@ -79,7 +84,7 @@
                                             <li><a href="#" class="dropdown-item">Hesap Ayarları</a></li>
                                         }
                                     }
-                                    <li><a asp-controller="Account" asp-action="Logout" class="dropdown-item">Some other action</a></li>
+                                    <li><a asp-controller="Account" asp-action="Logout" class="dropdown-item">Çıkış Yap</a></li>
 
                                     <li class="dropdown-divider"></li>
                                     <li><a asp-controller="Account" asp-action="Logout" class="dropdown-item">Some other action</a></li>
@@ -113,6 +118,12 @@
     <script src="~/Site/js/adminlte.min.js"></script>
     <script src="~/Site/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Site/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script src="~/Site/lib/summernote/summernote-bs4.min.js"></script>
+    <script>
+        $(function () {
+            $('.textarea').summernote()
+        })
+    </script>
     <script>
         $(function () {
             $("#example1").DataTable();
@@ -126,6 +137,8 @@
             });
         });
     </script>
+
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

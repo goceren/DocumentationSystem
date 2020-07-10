@@ -1,0 +1,7 @@
+﻿@model CountsModel 
+@{
+    ViewData["Title"] = "Default";
+}
+
+<li><a asp-controller="ConfirmDocument" asp-action="Index" class="dropdown-item">Bekleyen Dökümanlar (<b style="color: red;">@Model.DocumentCounts</b>)</a></li>
+<li><a asp-controller="User" asp-action="WaitForConfirmation" class="dropdown-item">Bekleyen Kullanıcılar (<b style="color: red;">@Model.UserCounts</b>)</a></li>

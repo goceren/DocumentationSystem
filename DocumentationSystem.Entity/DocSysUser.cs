@@ -13,6 +13,6 @@ namespace DocumentationSystem.Entity
         public bool isDeleted { get; set; }
         public string ProfilePhoto { get; set; }
         public DocSysDepartments Department { get; set; }
-        public List<DocSysDocumentUser> DocumentUsers { get; set; }
+        public List<DocSysDocument> Documents { get; set; }
     }
 }

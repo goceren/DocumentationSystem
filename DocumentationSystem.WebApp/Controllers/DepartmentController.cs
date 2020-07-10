@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DocumentationSystem.WebApp.Controllers
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin, staff")]
     public class DepartmentController : Controller
     {
         private readonly IDepartmentService _departmentService;

@@ -44,14 +44,21 @@
                             <input asp-for="Phone" type="text" class="form-control">
                             <span class="text-danger" asp-validation-for="Phone"></span>
                         </div>
+                        @if (User.IsInRole("admin"))
+                        {
+                    <div class="form-group">
+                        <label asp-for="RoleId">Rolü</label>
+                        <select asp-for="RoleId" asp-items="ViewBag.roles" class="form-control">
+                            <option selected value="@Model.RoleId" > </option>
+                        </select>
+                        <span class="text-danger" asp-validation-for="RoleId"></span>
+                    </div> }
+                                    else
+                                    {
+                                        <input type="hidden" asp-for="RoleId" value="@Model.RoleId"/>
+                                    }
                         <div class="form-group">
-                            <label asp-for="RoleId">Rolü</label>
-                            <select asp-for="RoleId" asp-items="ViewBag.roles" class="form-control">
-                            </select>
-                            <span class="text-danger" asp-validation-for="RoleId"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>User Is Approved</label>
+                            <label>Admin Onayı</label>
                             <div class="custom-control custom-checkbox">
                                 <input asp-for="isApprovedByAdmin" class="custom-control-input" type="checkbox">
                                 <label asp-for="isApprovedByAdmin" class="custom-control-label">Aktif</label>

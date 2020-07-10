@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace DocumentationSystem.WebApp.Controllers
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin, staff")]
     public class UserController : Controller
     {
         private readonly UserManager<DocSysUser> _userManager;
@@ -80,9 +80,10 @@ namespace DocumentationSystem.WebApp.Controllers
             var roles = _roleManager.Roles;
             ViewBag.roles = new SelectList(roles, "Name", "Name");
             ViewBag.departments = new SelectList(_departmentService.GetAll(), "DepartmentId", "DepartmentName");
+            DocSysUser user = await _userManager.FindByEmailAsync(model.Email);
+
             if (ModelState.IsValid)
             {
-                DocSysUser user = await _userManager.FindByEmailAsync(model.Email);
                 if (user == null)
                 {
                     TempData.Put("message", new ResultMessage()
@@ -141,7 +142,7 @@ namespace DocumentationSystem.WebApp.Controllers
         {
 
             var user = await _userManager.FindByEmailAsync(email);
-            if(user != null)
+            if (user != null)
             {
                 user.isDeleted = true;
                 var result = await _userManager.UpdateAsync(user);
@@ -159,7 +160,7 @@ namespace DocumentationSystem.WebApp.Controllers
             TempData.Put("message", new ResultMessage()
             {
                 Title = "Kullanıcı Sil",
-                Message = "Kullanıcı silme işlemi başarılı",
+                Message = "Kullanıcı silme işlemi başarısız",
                 Css = "danger"
             });
             return RedirectToAction("Index");
@@ -178,8 +179,8 @@ namespace DocumentationSystem.WebApp.Controllers
                 {
                     TempData.Put("message", new ResultMessage()
                     {
-                        Title = "Kullanıcı Sil",
-                        Message = "Kullanıcı Silindi",
+                        Title = "Kullanıcı Geri Alma",
+                        Message = "Kullanıcı geri alma işlemi başarılı.",
                         Css = "success"
                     });
                     return RedirectToAction("Index");
@@ -188,7 +189,60 @@ namespace DocumentationSystem.WebApp.Controllers
             TempData.Put("message", new ResultMessage()
             {
                 Title = "Kullanıcı Geri Al",
-                Message = "Kullanıcı geri alma işlemi başarılı",
+                Message = "Kullanıcı geri alma işlemi başarısız.",
+                Css = "danger"
+            });
+            return RedirectToAction("Index");
+        }
+
+        [Route("/admin/users/waiting")]
+        public IActionResult WaitForConfirmation()
+        {
+            var users = new List<UserModel>();
+            foreach (var item in _userManager.Users.Where(i => i.isApprovedByAdmin == false && i.isDeleted == false).ToList())
+            {
+                var user = new UserModel()
+                {
+                    ID = item.Id,
+                    DepartmentId = item.DepartmentId,
+                    Department = _departmentService.GetById(item.DepartmentId),
+                    Email = item.Email,
+                    isDeleted = item.isDeleted,
+                    NameSurname = item.NameSurname,
+                    isApprovedByAdmin = item.isApprovedByAdmin,
+                    Phone = item.PhoneNumber,
+                    ProfilePhoto = item.ProfilePhoto,
+                    RoleId = _userManager.GetRolesAsync(item).Result.FirstOrDefault()
+                };
+                users.Add(user);
+            }
+            return View(users);
+        }
+
+        [Route("/admin/user/confirm/{email?}")]
+        public async Task<IActionResult> ConfirmUser(string email)
+        {
+
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user != null)
+            {
+                user.isApprovedByAdmin = true;
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    TempData.Put("message", new ResultMessage()
+                    {
+                        Title = "Kullanıcı Onayı",
+                        Message = "Kullanıcı başarıyla onaylandı. Düzenlemek için panel menüsünden kullanıcıları görüntüleyebilirsiniz.",
+                        Css = "success"
+                    });
+                    return RedirectToAction("WaitForConfirmation");
+                }
+            }
+            TempData.Put("message", new ResultMessage()
+            {
+                Title = "Kullanıcı Onayı",
+                Message = "Kullanıcı onaylama işlemi başarısız",
                 Css = "danger"
             });
             return RedirectToAction("Index");

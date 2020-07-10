@@ -28,21 +28,6 @@ namespace DocumentationSystem.DataAccess.Concrete.EFCore
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<DocSysDocumentUser>()
-                .HasKey(x => new { x.UserId, x.DocumentId });
-
-            builder.Entity<DocSysDocumentUser>()               
-                .HasOne<DocSysUser>(e => e.User)           
-                .WithMany(e => e.DocumentUsers)         
-                .HasForeignKey(e => e.UserId)         
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<DocSysDocumentUser>()
-               .HasOne<DocSysDocument>(e => e.Document)
-               .WithMany(e => e.DocumentUsers)
-               .HasForeignKey(e => e.DocumentId)
-               .OnDelete(DeleteBehavior.Restrict);
-
             base.OnModelCreating(builder);
         }
 

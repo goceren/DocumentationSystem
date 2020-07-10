@@ -71,6 +71,9 @@ namespace DocumentationSystem.DataAccess.Migrations
                     b.Property<bool>("DocumentIsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("DocumentIsApproved")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("DocumentIsDeleted")
                         .HasColumnType("bit");
 
@@ -83,27 +86,16 @@ namespace DocumentationSystem.DataAccess.Migrations
                     b.Property<DateTime>("DocumentUpdatedTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("DocumentId");
 
                     b.HasIndex("DepartmentId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("DocSysDocument");
-                });
-
-            modelBuilder.Entity("DocumentationSystem.Entity.DocSysDocumentUser", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
-
-                    b.Property<int>("DocumentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "DocumentId");
-
-                    b.HasIndex("DocumentId");
-
-                    b.ToTable("DocSysDocumentUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -339,21 +331,10 @@ namespace DocumentationSystem.DataAccess.Migrations
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("DocumentationSystem.Entity.DocSysDocumentUser", b =>
-                {
-                    b.HasOne("DocumentationSystem.Entity.DocSysDocument", "Document")
-                        .WithMany("DocumentUsers")
-                        .HasForeignKey("DocumentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
 
                     b.HasOne("DocumentationSystem.Entity.DocSysUser", "User")
-                        .WithMany("DocumentUsers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .WithMany("Documents")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

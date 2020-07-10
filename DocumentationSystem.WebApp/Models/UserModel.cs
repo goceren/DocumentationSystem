@@ -23,7 +23,8 @@ namespace DocumentationSystem.WebApp.Models
         public bool isApprovedByAdmin { get; set; }
         public bool isDeleted { get; set; }
         public string ProfilePhoto { get; set; }
+        public List<DocSysDocument> Documents { get; set; }
+
         public DocSysDepartments Department { get; set; }
-        public List<DocSysDocumentUser> DocumentUsers { get; set; }
     }
 }

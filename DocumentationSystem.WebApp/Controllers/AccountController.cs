@@ -30,7 +30,7 @@ namespace DocumentationSystem.WebApp.Controllers
             _departmentService = departmentService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
             return RedirectToAction("Login");
         }
@@ -66,6 +66,11 @@ namespace DocumentationSystem.WebApp.Controllers
                 ModelState.AddModelError("", "Kullanıcı silinmiş lütfen yetkiliden yardım isteyiniz.");
                 return View(loginModel);
             }
+            if (!user.isApprovedByAdmin)
+            {
+                ModelState.AddModelError("", "Kullanıcı henüz onaylanmamış lütfen yetkili ile iletişime geçiniz.");
+                return View(loginModel);
+            }
             var result = await _signinManager.PasswordSignInAsync(user, loginModel.Password, false, true);
             if (result.Succeeded)
             {
@@ -99,11 +104,19 @@ namespace DocumentationSystem.WebApp.Controllers
                 ProfilePhoto = "",
                 PhoneNumber = registerModel.Phone,
                 isApprovedByAdmin = false,
+                isDeleted = false
             };
             var result = await _userManager.CreateAsync(user, registerModel.Password);
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "user");
+                TempData.Put("message", new ResultMessage()
+                {
+                    Title = "Kayıt Başarılı",
+                    Message = "Kullanıcı kaydınız başarılıdır. Lütfen sisteme giriş yapmak için admin onayını bekleyiniz.",
+                    Css = "warning"
+                });
+
                 return RedirectToAction("login", "account");
             }
             ModelState.AddModelError("", result.Errors.FirstOrDefault().Description);
@@ -120,6 +133,18 @@ namespace DocumentationSystem.WebApp.Controllers
                 Css = "warning"
             });
             return RedirectToAction("login", "account");
+        }
+
+        [Route("/account/accessdenied")]
+        public IActionResult AccessDenied()
+        {
+            TempData.Put("message", new ResultMessage()
+            {
+                Title = "İzinsiz Erişim",
+                Message = "Bu sayfaya giriş izniniz yok.",
+                Css = "danger"
+            });
+            return View();
         }
     }
 }

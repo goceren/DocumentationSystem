@@ -1,0 +1,206 @@
+﻿@model IEnumerable<DocumentationSystem.Entity.DocSysDocument>
+
+<div class="container mt-4">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Dökümantasyonlarım</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Dökümantasyonlar</h3>
+                </div>
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Başlık</th>
+                                <th>Detaylar</th>
+                                <th>Departmanı</th>
+                                <th>Oluşturulma Tarihi</th>
+                                <th>Son Güncellenme</th>
+                                <th>Aktiflik</th>
+                                <th>
+                                    <a class="btn btn-primary btn-sm text-center" asp-controller="Document" asp-action="CreateDocument">
+                                        <i class="fas fa-plus">
+                                        </i>
+                                        Yeni Ekle
+                                    </a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="form-group">
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    if (!item.DocumentIsDeleted)
+                                    {
+                                        <tr>
+                                            <td style="width: 5%">
+                                                <a>@item.DocumentId</a>
+                                            </td>
+                                            <td style="width: 13%">
+                                                <a>
+                                                    @item.DocumentTitle
+                                                </a>
+                                            </td>
+                                            <td style="width: 13%">
+                                                <a>
+                                                    @if (item.DocumentDescription.Length < 50)
+                                                    {
+                                                        @item.DocumentDescription
+                                                    }
+                                                    else
+                                                    {
+                                                        @item.DocumentDescription.Substring(0, 50)
+                                                    }
+
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    @item.Department.DepartmentName
+                                                </a>
+                                            </td>
+                                            <td style="width: 10%">
+                                                <a>
+                                                    @item.DocumentCreatedDate
+                                                </a>
+                                            </td>
+                                            <td style="width: 10%">
+                                                <a>
+                                                    @item.DocumentUpdatedTime
+                                                </a>
+                                            </td>
+                                            <td class="project-state">
+                                                @if (item.DocumentIsActive)
+                                                {
+                                                    <span class="badge badge-success text-center">Aktif</span> }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger text-center">Pasif</span>}
+                                            </td>
+                                            <td class="project-actions text-center">
+                                                <a id="btn1" class="btn btn-info btn-sm" asp-controller="Document" asp-action="EditDocument" asp-route-id="@item.DocumentId">
+                                                    <i class="fas fa-edit">
+                                                    </i>
+                                                    Düzenle
+                                                </a>
+                                                <a onclick="return confirm('@item.DocumentId ID numaralı, @item.DocumentTitle başlıklı dökümantasyonu silmek istediğinize emin misiniz ?')" class="btn btn-danger btn-sm" asp-controller="Document" asp-action="DeleteDocument" asp-route-id="@item.DocumentId">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Sil
+                                                </a>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Silinen Dökümanlar</h3>
+                </div>
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Başlık</th>
+                                <th>Detaylar</th>
+                                <th>Departmanı</th>
+                                <th>Oluşturulma Tarihi</th>
+                                <th>Son Güncellenme</th>
+                                <th>Aktiflik</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="form-group">
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    if (item.DocumentIsDeleted)
+                                    {
+                                        <tr>
+                                            <td style="width: 5%">
+                                                <a>@item.DocumentId</a>
+                                            </td>
+                                            <td style="width: 13%">
+                                                <a>
+                                                    @item.DocumentTitle
+                                                </a>
+                                            </td>
+                                            <td style="width: 13%">
+                                                <a>
+                                                    @if (item.DocumentDescription.Length < 50)
+                                                    {
+                                                        @item.DocumentDescription
+                                                    }
+                                                    else
+                                                    {
+                                                        @item.DocumentDescription.Substring(0, 50)
+                                                    }
+
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    @item.Department.DepartmentName
+                                                </a>
+                                            </td>
+                                            <td style="width: 10%">
+                                                <a>
+                                                    @item.DocumentCreatedDate
+                                                </a>
+                                            </td>
+                                            <td style="width: 10%">
+                                                <a>
+                                                    @item.DocumentUpdatedTime
+                                                </a>
+                                            </td>
+                                            <td class="project-state">
+                                                @if (item.DocumentIsActive)
+                                                {
+                                                    <span class="badge badge-success text-center">Aktif</span> }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger text-center">Pasif</span>}
+                                            </td>
+                                            <td class="project-actions text-center">
+                                                <a id="btn1" class="btn btn-info btn-sm" asp-controller="Document" asp-action="EditDocument" asp-route-id="@item.DocumentId">
+                                                    <i class="fas fa-edit">
+                                                    </i>
+                                                    Düzenle
+                                                </a>
+                                                <a onclick="return confirm('@item.DocumentId ID numaralı, @item.DocumentTitle başlıklı dökümantasyonun silinmesini geri almak istediğinize emin misiniz ?')" class="btn btn-danger btn-sm" asp-controller="Document" asp-action="UnDeleteDocument" asp-route-id="@item.DocumentId">
+                                                    <i class="fa fa-upload">
+                                                    </i>
+                                                    Geri Al
+                                                </a>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

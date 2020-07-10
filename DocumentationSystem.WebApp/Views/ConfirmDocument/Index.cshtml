@@ -1,0 +1,111 @@
+﻿@model IEnumerable<DocumentationSystem.Entity.DocSysDocument>
+
+<div class="container mt-4">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Onay Bekleyen Dökümanlar</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Dökümantasyonlar</h3>
+                </div>
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Başlık</th>
+                                <th>Detaylar</th>
+                                <th>Departmanı</th>
+                                <th>Son Güncellenme</th>
+                                <th>Herkese Görünür</th>
+                                <th>Admin Onayı</th>
+                                <th>                                    
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="form-group">
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    if (!item.DocumentIsDeleted)
+                                    {
+                            <tr>
+                                <td style="width: 5%">
+                                    <a>@item.DocumentId</a>
+                                </td>
+                                <td style="width: 13%">
+                                    <a>
+                                        @item.DocumentTitle
+                                    </a>
+                                </td>
+                                <td style="width: 13%">
+                                    <a>
+                                        @if (item.DocumentDescription.Length < 50)
+                                        {
+                                            @item.DocumentDescription
+                                        }
+                                        else
+                                        {
+                                            @item.DocumentDescription.Substring(0, 50)
+                                        }
+
+                                    </a>
+                                </td>
+                                <td>
+                                    <a>
+                                        @item.Department.DepartmentName
+                                    </a>
+                                </td>
+                                <td style="width: 10%">
+                                    <a>
+                                        @item.DocumentUpdatedTime
+                                    </a>
+                                </td>
+                                <td class="project-state">
+                                    @if (item.DocumentOpentoEveryone)
+                                    {
+                                        <span class="badge badge-success text-center">Evet</span> }
+                                    else
+                                    {
+                                        <span class="badge badge-danger text-center">Hayır</span>}
+                                </td>
+                                <td class="project-state">
+                                    @if (item.DocumentIsApproved)
+                                    {
+                                        <span class="badge badge-success text-center">Evet</span> }
+                                    else
+                                    {
+                                        <span class="badge badge-danger text-center">Hayır</span>}
+                                </td>
+                                <td class="project-actions text-center">
+                                    <a id="btn1" class="btn btn-info btn-sm" asp-controller="ConfirmDocument" asp-action="EditDocument" asp-route-id="@item.DocumentId">
+                                        <i class="fas fa-edit">
+                                        </i>
+                                        İncele
+                                    </a>
+                                    <a onclick="return confirm('@item.DocumentId ID numaralı, @item.DocumentTitle başlıklı dökümantasyonu onaylamak istediğinize emin misiniz ?')" class="btn btn-primary btn-sm" asp-controller="ConfirmDocument" asp-action="ConfirmDocument" asp-route-id="@item.DocumentId">
+                                        <i class="fas fa-check">
+                                        </i>
+                                        Onayla
+                                    </a>
+
+                                </td>
+                            </tr>
+                                    }
+                                }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

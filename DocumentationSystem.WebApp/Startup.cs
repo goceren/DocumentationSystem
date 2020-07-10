@@ -70,6 +70,9 @@ namespace DocumentationSystem.WebApp
             services.AddScoped<IDocSysDepartmentsDAL, EFCoreDocSysDepartmentsDAL>();
             services.AddScoped<IDepartmentService, DepartmentsManager>();
 
+            services.AddScoped<IDocSysDocumentDAL, EFCoreDocSysDocumentDAL>();
+            services.AddScoped<IDocumentService, DocumentManager>();
+
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();

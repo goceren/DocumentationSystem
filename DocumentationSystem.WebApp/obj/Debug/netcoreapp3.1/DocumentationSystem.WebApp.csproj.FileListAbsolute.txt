@@ -11,9 +11,7 @@ D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\
 D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\DocumentationSystem.WebApp.TagHelpers.output.cache
 D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\DocumentationSystem.WebApp.RazorCoreGenerate.cache
 D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
-D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\DocumentationSystem.WebApp.RazorTargetAssemblyInfo.cache
@@ -162,3 +160,11 @@ D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\
 D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Department\Departments.cshtml.g.cs
 D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Department\CreateDepartment.cshtml.g.cs
 D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Department\EditDepartment.cshtml.g.cs
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\WaitForConfirmation.cshtml.g.cs
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Counts\Default.cshtml.g.cs
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\AccessDenied.cshtml.g.cs
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Document\UserDocument.cshtml.g.cs
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Document\CreateDocument.cshtml.g.cs
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Document\EditDocument.cshtml.g.cs
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\ConfirmDocument\Index.cshtml.g.cs
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.WebApp\obj\Debug\netcoreapp3.1\Razor\Views\ConfirmDocument\EditDocument.cshtml.g.cs
