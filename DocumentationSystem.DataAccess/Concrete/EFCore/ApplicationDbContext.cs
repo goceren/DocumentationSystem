@@ -22,7 +22,7 @@ namespace DocumentationSystem.DataAccess.Concrete.EFCore
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=tcp:srvw52.hostixo.com; Initial Catalog=gocerenc_document; User ID=goceren_document; Password=Abcd..123; MultipleActiveResultSets=true;");
+            optionsBuilder.UseSqlServer(@"");
             
         }
 
