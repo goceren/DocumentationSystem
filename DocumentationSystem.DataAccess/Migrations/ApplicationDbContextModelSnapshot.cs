@@ -27,6 +27,7 @@ namespace DocumentationSystem.DataAccess.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DeparmentDetail")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DepartmentCreatedDate")
@@ -39,9 +40,11 @@ namespace DocumentationSystem.DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("DepartmentName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DepartmentPhone")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DepartmentId");
@@ -63,6 +66,7 @@ namespace DocumentationSystem.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DocumentDescription")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DocumentImage")
@@ -80,13 +84,19 @@ namespace DocumentationSystem.DataAccess.Migrations
                     b.Property<bool>("DocumentOpentoEveryone")
                         .HasColumnType("bit");
 
+                    b.Property<string>("DocumentSubtitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("DocumentTitle")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DocumentUpdatedTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("DocumentId");
@@ -334,7 +344,9 @@ namespace DocumentationSystem.DataAccess.Migrations
 
                     b.HasOne("DocumentationSystem.Entity.DocSysUser", "User")
                         .WithMany("Documents")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

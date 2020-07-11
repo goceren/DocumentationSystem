@@ -31,9 +31,19 @@ namespace DocumentationSystem.Business.Concrete
             return _departmentsDAL.GetAll().ToList();
         }
 
+        public List<DocSysDepartments> GetAllWithDocumentAndUser()
+        {
+            return _departmentsDAL.GetAllWithDocumentAndUser();
+        }
+
         public DocSysDepartments GetById(int id)
         {
             return _departmentsDAL.GetById(id);
+        }
+
+        public DocSysDepartments GetByIdWithDocumentAndUser(int id)
+        {
+            return _departmentsDAL.GetByIdWithDocumentAndUser(id);
         }
 
         public void Update(DocSysDepartments entity)

@@ -29,6 +29,13 @@
                             <input asp-for="DocumentTitle" type="text" class="form-control">
                             <span class="text-danger" asp-validation-for="DocumentTitle"></span>
                         </div>
+                        <div class="form-group">
+                            <label asp-for="DocumentSubtitle">Dökümantasyonun anasayfada görünecek kısa açıklaması</label>
+                            <div class="form-group">
+                                <textarea asp-for="DocumentSubtitle" class="form-control" rows="3" placeholder="..."></textarea>
+                            </div>
+                            <span class="text-danger" asp-validation-for="DocumentSubtitle"></span>
+                        </div>
                         <div class="card-body pad">
                             <label asp-for="DocumentDescription">Açıklama</label>
                             <div class="mb-3">
@@ -40,7 +47,7 @@
                         <div class="form-group">
                             <label asp-for="DepartmentId">Rolü</label>
                             <select asp-for="DepartmentId" asp-items="ViewBag.departments" class="form-control">
-                                <option disabled selected value="@Model.DocumentId">Hakkımda Sayfası Seçiniz</option>
+                                <option disabled selected value="@Model.DocumentId">Departman Seçiniz</option>
                             </select>
                             <span class="text-danger" asp-validation-for="DepartmentId"></span>
                         </div>
@@ -71,22 +78,22 @@
                         </div>
                         @if (User.IsInRole("admin") || User.IsInRole("staff"))
                         {
-        <div class="form-group">
-            <label>Herkese Açık veya Sadece Personel ve Adminler Görebilir</label>
-            <div class="custom-control custom-checkbox">
-                <input asp-for="DocumentOpentoEveryone" class="custom-control-input" type="checkbox">
-                <label asp-for="DocumentOpentoEveryone" class="custom-control-label">Aktif</label>
-                <span class="text-danger" asp-validation-for="DocumentOpentoEveryone"></span>
-            </div>
-        </div>
-                            <div class="form-group">
-                                <label>Admin Onayı</label>
-                                <div class="custom-control custom-checkbox">
-                                    <input asp-for="DocumentIsApproved" class="custom-control-input" type="checkbox">
-                                    <label asp-for="DocumentIsApproved" class="custom-control-label">Aktif</label>
-                                    <span class="text-danger" asp-validation-for="DocumentIsApproved"></span>
-                                </div>
-                            </div>}
+                    <div class="form-group">
+                        <label>Herkese Açık veya Sadece Personel ve Adminler Görebilir</label>
+                        <div class="custom-control custom-checkbox">
+                            <input asp-for="DocumentOpentoEveryone" class="custom-control-input" type="checkbox">
+                            <label asp-for="DocumentOpentoEveryone" class="custom-control-label">Aktif</label>
+                            <span class="text-danger" asp-validation-for="DocumentOpentoEveryone"></span>
+                        </div>
+                    </div>
+                                        <div class="form-group">
+                                            <label>Admin Onayı</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input asp-for="DocumentIsApproved" class="custom-control-input" type="checkbox">
+                                                <label asp-for="DocumentIsApproved" class="custom-control-label">Aktif</label>
+                                                <span class="text-danger" asp-validation-for="DocumentIsApproved"></span>
+                                            </div>
+                                        </div>}
                     </div>
                 </div>
             </div>

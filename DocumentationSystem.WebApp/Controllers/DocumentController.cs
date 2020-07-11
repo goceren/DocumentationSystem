@@ -26,10 +26,6 @@ namespace DocumentationSystem.WebApp.Controllers
             _userManager = userManager;
             _departmentService = departmentService;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         [Route("/user/documentations")]
         public async Task<IActionResult> UserDocumentAsync()
@@ -44,7 +40,7 @@ namespace DocumentationSystem.WebApp.Controllers
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             ViewBag.userId = user.Id;
-            ViewBag.departments = new SelectList(_departmentService.GetAll(), "DepartmentId", "DepartmentName");
+            ViewBag.departments = new SelectList(_departmentService.GetAll().Where(i => i.DepartmentIsDeleted == false && i.DepartmentIsActive).ToList(), "DepartmentId", "DepartmentName");
             return View(new DocSysDocument());
         }
 
@@ -75,7 +71,7 @@ namespace DocumentationSystem.WebApp.Controllers
                 TempData.Put("message", new ResultMessage()
                 {
                     Title = "Bildirim",
-                    Message = "Dökümantasyon başarıyla oluşturuldu.",
+                    Message = "Dökümantasyon başarıyla oluşturuldu. Yetkili onayından sonra yayınlanabilir.",
                     Css = "success"
                 });
                 return RedirectToAction("UserDocument");
@@ -92,13 +88,14 @@ namespace DocumentationSystem.WebApp.Controllers
         [Route("/user/documentations/edit/{id?}")]
         public IActionResult EditDocument(int id)
         {
-            ViewBag.departments = new SelectList(_departmentService.GetAll(), "DepartmentId", "DepartmentName");
+            ViewBag.departments = new SelectList(_departmentService.GetAll().Where(i => i.DepartmentIsDeleted == false && i.DepartmentIsActive).ToList(), "DepartmentId", "DepartmentName");
             return View(_documentService.GetById(id));
         }
 
         [HttpPost, Route("/user/documentations/edit/{id?}")]
         public async Task<IActionResult> EditDocumentAsync(DocSysDocument entity, IFormFile file)
         {
+            ViewBag.departments = new SelectList(_departmentService.GetAll().Where(i => i.DepartmentIsDeleted == false && i.DepartmentIsActive).ToList(), "DepartmentId", "DepartmentName");
             var documentation = _documentService.GetById(entity.DocumentId);
             if (User.IsInRole("user"))
             {

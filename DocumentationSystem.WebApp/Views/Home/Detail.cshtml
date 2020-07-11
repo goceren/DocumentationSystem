@@ -1,0 +1,35 @@
+﻿@model DocumentationSystem.Entity.DocSysDocument
+
+<div class="container mt-4">
+    <div class="content-wrapper">
+        <div class="card card-widget">
+            <div class="card-header">
+                <div class="user-block">
+                    <span style="font-size: medium;">@Model.DocumentTitle</span><br>
+                    <span style="font-size: small;">@Model.DocumentUpdatedTime.ToString("D")</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <span style="font-size: medium;">
+                    Dökümantasyon Özeti
+                </span><hr />
+                <p style="font-size: small;">@Model.DocumentSubtitle</p>
+                <br /><br />
+
+                <span style="font-size: medium;">Detaylar</span><hr />
+                <p style="font-size: small;">@Html.Raw(Model.DocumentDescription)</p>
+
+
+                <br />
+                <br />
+
+                <span style="font-size: medium;">
+                    Dökümantasyon Detay Resmi
+                </span> <hr />
+                <img class="img-fluid pad" src="~/img/documents/@Model.DocumentImage" alt="Photo">
+
+
+            </div>
+        </div>
+    </div>
+</div>

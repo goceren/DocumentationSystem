@@ -1,0 +1,110 @@
+﻿@model DocumentationSystem.Entity.DocSysDocument
+
+<div class="container mt-4">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Dökümantasyon Güncelle</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @if (Model != null)
+        {
+<form asp-controller="AllDocument" asp-action="EditDocument" method="post" enctype="multipart/form-data">
+    <input asp-for="UserId" value="@Model.UserId" type="hidden" class="form-control">
+    <input asp-for="DocumentId" type="hidden" class="form-control">
+    <section class="content p-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">İçerik</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="DocumentTitle">Başlık</label>
+                            <input asp-for="DocumentTitle" type="text" class="form-control">
+                            <span class="text-danger" asp-validation-for="DocumentTitle"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DocumentSubtitle">Dökümantasyonun anasayfada görünecek kısa açıklaması</label>
+                            <div class="form-group">
+                                <textarea asp-for="DocumentSubtitle" class="form-control" rows="3" placeholder="..."></textarea>
+                            </div>
+                            <span class="text-danger" asp-validation-for="DocumentSubtitle"></span>
+                        </div>
+                        <div class="card-body pad">
+                            <label asp-for="DocumentDescription">Açıklama</label>
+                            <div class="mb-3">
+                                <textarea asp-for="DocumentDescription" class="textarea" placeholder="Place some text here"
+                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                <span class="text-danger" asp-validation-for="DocumentTitle"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DepartmentId">Departman</label>
+                            <select asp-for="DepartmentId" asp-items="ViewBag.departments" class="form-control">
+                                <option disabled selected value="@Model.DocumentId">Departman Seçiniz</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="DepartmentId"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Oluşturulma Tarihi</label>
+                            <div class="input-group">
+                                <div class="custom-file mr-3">
+                                    <label>@Model.DocumentCreatedDate</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Akış Diyagramı ve benzeri Fotograf ekleyebilirsiniz.</label>
+                            <div class="input-group">
+                                <div class="custom-file mr-3">
+                                    <input type="file" name="file" class="custom-file-input" id="file">
+                                    <label class="custom-file-label" for="exampleInputFile">@Model.DocumentImage</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Aktiflik Durumu</label>
+                            <div class="custom-control custom-checkbox">
+                                <input asp-for="DocumentIsActive" class="custom-control-input" type="checkbox">
+                                <label asp-for="DocumentIsActive" class="custom-control-label">Aktif</label>
+                                <span class="text-danger" asp-validation-for="DocumentIsActive"></span>
+                            </div>
+                        </div>
+                        @if (User.IsInRole("admin") || User.IsInRole("staff"))
+                        {
+                    <div class="form-group">
+                        <label>Herkese Açık veya Sadece Personel ve Adminler Görebilir</label>
+                        <div class="custom-control custom-checkbox">
+                            <input asp-for="DocumentOpentoEveryone" class="custom-control-input" type="checkbox">
+                            <label asp-for="DocumentOpentoEveryone" class="custom-control-label">Aktif</label>
+                            <span class="text-danger" asp-validation-for="DocumentOpentoEveryone"></span>
+                        </div>
+                    </div>
+                                        <div class="form-group">
+                                            <label>Admin Onayı</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input asp-for="DocumentIsApproved" class="custom-control-input" type="checkbox">
+                                                <label asp-for="DocumentIsApproved" class="custom-control-label">Aktif</label>
+                                                <span class="text-danger" asp-validation-for="DocumentIsApproved"></span>
+                                            </div>
+                                        </div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pb-4">
+            <div class="col-12">
+                <a asp-controller="AllDocument" asp-action="Index" class="btn btn-danger btn-lg">Vazgeç</a>
+                <input type="submit" value="Kaydet" class="btn btn-success float-right btn-lg">
+            </div>
+        </div>
+    </section>
+</form>}
+    </div>
+</div>

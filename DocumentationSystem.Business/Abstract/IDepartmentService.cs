@@ -7,5 +7,8 @@ namespace DocumentationSystem.Business.Abstract
 {
     public interface IDepartmentService : IRepositoryService<DocSysDepartments>
     {
+        List<DocSysDepartments> GetAllWithDocumentAndUser();
+        DocSysDepartments GetByIdWithDocumentAndUser(int id);
+
     }
 }

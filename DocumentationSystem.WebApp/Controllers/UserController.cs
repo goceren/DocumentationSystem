@@ -57,7 +57,7 @@ namespace DocumentationSystem.WebApp.Controllers
         {
             var roles = _roleManager.Roles;
             ViewBag.roles = new SelectList(roles, "Name", "Name");
-            ViewBag.departments = new SelectList(_departmentService.GetAll(), "DepartmentId", "DepartmentName");
+            ViewBag.departments = new SelectList(_departmentService.GetAll().Where(i => i.DepartmentIsDeleted == false && i.DepartmentIsActive).ToList(), "DepartmentId", "DepartmentName");
             var user = await _userManager.FindByEmailAsync(email);
             var userRoles = await _userManager.GetRolesAsync(user);
             var model = new UserModel()
@@ -79,7 +79,7 @@ namespace DocumentationSystem.WebApp.Controllers
         {
             var roles = _roleManager.Roles;
             ViewBag.roles = new SelectList(roles, "Name", "Name");
-            ViewBag.departments = new SelectList(_departmentService.GetAll(), "DepartmentId", "DepartmentName");
+            ViewBag.departments = new SelectList(_departmentService.GetAll().Where(i => i.DepartmentIsDeleted == false && i.DepartmentIsActive).ToList(), "DepartmentId", "DepartmentName");
             DocSysUser user = await _userManager.FindByEmailAsync(model.Email);
 
             if (ModelState.IsValid)
@@ -140,8 +140,19 @@ namespace DocumentationSystem.WebApp.Controllers
         [Route("/admin/user/delete/{email?}")]
         public async Task<IActionResult> DeleteUserAsync(string email)
         {
-
+            
             var user = await _userManager.FindByEmailAsync(email);
+            var role = await _userManager.GetRolesAsync(user);
+            if (role.FirstOrDefault() != "admin")
+            {
+                TempData.Put("message", new ResultMessage()
+                {
+                    Title = "Kullanıcı Sil",
+                    Message = "Silmek istediğiniz kullanıcı admin olduğu için yanlızca adminler tarafından silinebilir.",
+                    Css = "danger"
+                });
+                return RedirectToAction("Index");
+            }
             if (user != null)
             {
                 user.isDeleted = true;

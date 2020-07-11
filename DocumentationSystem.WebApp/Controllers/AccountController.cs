@@ -83,18 +83,25 @@ namespace DocumentationSystem.WebApp.Controllers
         [Route("/account/register")]
         public IActionResult Register()
         {
-            ViewBag.departments = new SelectList(_departmentService.GetAll(), "DepartmentId", "DepartmentName");
+            ViewBag.departments = new SelectList(_departmentService.GetAll().Where(i => i.DepartmentIsDeleted == false && i.DepartmentIsActive).ToList(), "DepartmentId", "DepartmentName");
             return View(new RegisterModel());
         }
 
         [HttpPost, Route("/account/register")]
         public async Task<IActionResult> Register(RegisterModel registerModel)
         {
-            ViewBag.departments = new SelectList(_departmentService.GetAll(), "DepartmentId", "DepartmentName");
+            ViewBag.departments = new SelectList(_departmentService.GetAll().Where(i => i.DepartmentIsDeleted == false && i.DepartmentIsActive).ToList(), "DepartmentId", "DepartmentName");
             if (!ModelState.IsValid)
             {
                 return View(registerModel);
             }
+            if (registerModel.DepartmentId == 0)
+            {
+                ModelState.AddModelError("", "Departman Seçiniz.");
+
+                return View(registerModel);
+            }
+
             var user = new DocSysUser()
             { 
                 Email = registerModel.Email,
@@ -145,6 +152,53 @@ namespace DocumentationSystem.WebApp.Controllers
                 Css = "danger"
             });
             return View();
+        }
+
+        [Route("/user/changepassword")]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost, Route("/user/changepassword")]
+        public async Task<IActionResult> ChangePasswordAsync(ChangePasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    TempData.Put("message", new ResultMessage()
+                    {
+                        Title = "Şifre Değiştir",
+                        Message = "Lütfen önce giriş yapınız.",
+                        Css = "danger"
+                    });
+                    return RedirectToAction("Login");
+                }
+
+                var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+
+                if (result.Succeeded)
+                {
+                    await _signinManager.RefreshSignInAsync(user);
+                    TempData.Put("message", new ResultMessage()
+                    {
+                        Title = "Şifremi Değiştir",
+                        Message = "Şifreniz başarı ile değiştirildi.",
+                        Css = "success"
+                    });
+                    return RedirectToAction("Login", "Account");
+                }
+                TempData.Put("message", new ResultMessage()
+                {
+                    Title = "Şifremi Değiştir",
+                    Message = "Şifrenizi yanlış girdiniz...",
+                    Css = "danger"
+                });
+                return View();
+            }
+            return View(model);
         }
     }
 }

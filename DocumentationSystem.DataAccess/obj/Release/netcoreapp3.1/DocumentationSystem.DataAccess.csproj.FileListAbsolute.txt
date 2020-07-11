@@ -1,0 +1,15 @@
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\bin\Release\netcoreapp3.1\DocumentationSystem.DataAccess.deps.json
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\bin\Release\netcoreapp3.1\DocumentationSystem.DataAccess.runtimeconfig.json
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\bin\Release\netcoreapp3.1\DocumentationSystem.DataAccess.runtimeconfig.dev.json
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\bin\Release\netcoreapp3.1\DocumentationSystem.DataAccess.dll
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\bin\Release\netcoreapp3.1\DocumentationSystem.DataAccess.pdb
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\bin\Release\netcoreapp3.1\DocumentationSystem.Entity.dll
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\bin\Release\netcoreapp3.1\DocumentationSystem.Entity.pdb
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\obj\Release\netcoreapp3.1\DocumentationSystem.DataAccess.csprojAssemblyReference.cache
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\obj\Release\netcoreapp3.1\DocumentationSystem.DataAccess.AssemblyInfoInputs.cache
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\obj\Release\netcoreapp3.1\DocumentationSystem.DataAccess.AssemblyInfo.cs
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\obj\Release\netcoreapp3.1\DocumentationSystem.DataAccess.csproj.CoreCompileInputs.cache
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\obj\Release\netcoreapp3.1\DocumentationSystem.DataAccess.csproj.CopyComplete
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\obj\Release\netcoreapp3.1\DocumentationSystem.DataAccess.dll
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\obj\Release\netcoreapp3.1\DocumentationSystem.DataAccess.pdb
+D:\ProjectFolders\GitHub\MVC\DocumentationSystem\DocumentationSystem.DataAccess\obj\Release\netcoreapp3.1\DocumentationSystem.DataAccess.genruntimeconfig.cache

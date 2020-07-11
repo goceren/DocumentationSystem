@@ -65,13 +65,14 @@ namespace DocumentationSystem.WebApp.Controllers
         [Route("/documentations/edit/{id?}")]
         public IActionResult EditDocument(int id)
         {
-            ViewBag.departments = new SelectList(_departmentService.GetAll(), "DepartmentId", "DepartmentName");
+            ViewBag.departments = new SelectList(_departmentService.GetAll().Where(i => i.DepartmentIsDeleted == false && i.DepartmentIsActive).ToList(), "DepartmentId", "DepartmentName");
             return View(_documentService.GetById(id));
         }
 
         [HttpPost, Route("documentations/edit/{id?}")]
         public async Task<IActionResult> EditDocumentAsync(DocSysDocument entity, IFormFile file)
         {
+            ViewBag.departments = new SelectList(_departmentService.GetAll().Where(i => i.DepartmentIsDeleted == false && i.DepartmentIsActive).ToList(), "DepartmentId", "DepartmentName");
             var documentation = _documentService.GetById(entity.DocumentId);
             if (documentation != null)
             {

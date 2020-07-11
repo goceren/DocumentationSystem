@@ -20,7 +20,7 @@
 
         <nav class="main-header navbar navbar-expand navbar-light navbar-white">
             <div class="container">
-                <a asp-controller="Home" asp-action="Index" class="navbar-brand">
+                <a href="/" class="navbar-brand">
                     <img src="~/img/login.jpg" alt="ERU" class="brand-image img-circle elevation-3"
                          style="opacity: .8">
                 </a>
@@ -29,7 +29,7 @@
                     <li class="nav-item">
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a asp-controller="Home" asp-action="Index" class="nav-link">Anasayfa</a>
+                        <a href="/" class="nav-link">Anasayfa</a>
                     </li>
                     @{
                         if (User.Identity.IsAuthenticated)
@@ -49,45 +49,32 @@
                                                 <li><a asp-controller="Role" asp-action="Index" class="dropdown-item">Roller</a></li>
                                             }
                                             <li><a asp-controller="Department" asp-action="Index" class="dropdown-item">Departmanlar</a></li>
-                                            <li><a asp-controller="Document" asp-action="Index" class="dropdown-item">Dökümantasyonlar</a></li>
+                                            <li><a asp-controller="AllDocument" asp-action="Index" class="dropdown-item">Dökümantasyonlar</a></li>
+
+                                            <li class="dropdown-divider"></li>
+                                            @await Component.InvokeAsync("Counts")
                                         }
                                     }
-                                    <li class="dropdown-divider"></li>
-                                    @await Component.InvokeAsync("Counts")
                                 </ul>
                             </li>
                         }
                     }
                 </ul>
 
-                <form class="form-inline ml-3">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-navbar" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                @await Html.PartialAsync("_Search")
 
                 <div class="navbar-nav ml-auto">
                     @{
                         if (User.Identity.IsAuthenticated)
                         {
                             <div class="nav-item dropdown">
-                                <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fas fa-user" aria-hidden="true"></i></a>
+                                <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fas fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Hesap</a>
                                 <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                                    @{
-                                        if (User.IsInRole("admin"))
-                                        {
-                                            <li><a href="#" class="dropdown-item">Hesap Ayarları</a></li>
-                                        }
-                                    }
+                                    <li><a asp-controller="Account" asp-action="ChangePassword" class="dropdown-item">Şifre Değişikliği</a></li>
+                                    <li class="dropdown-divider"></li>
+
                                     <li><a asp-controller="Account" asp-action="Logout" class="dropdown-item">Çıkış Yap</a></li>
 
-                                    <li class="dropdown-divider"></li>
-                                    <li><a asp-controller="Account" asp-action="Logout" class="dropdown-item">Some other action</a></li>
 
                                 </ul>
                             </div>
@@ -96,7 +83,6 @@
                         {
                             <a class="nav-link" asp-controller="Account" asp-action="Index">
                                 <i class="fas fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Giriş
-
                             </a>
                         }
                     }
@@ -127,7 +113,8 @@
     <script>
         $(function () {
             $("#example1").DataTable();
-            $('#example2').DataTable({
+            $("#example2").DataTable();
+            $('#example3').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": false,

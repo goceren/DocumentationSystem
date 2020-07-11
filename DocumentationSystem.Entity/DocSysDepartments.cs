@@ -9,9 +9,16 @@ namespace DocumentationSystem.Entity
     {
         [Key]
         public int DepartmentId { get; set; }
+        [Required]
+
         public string DepartmentName { get; set; }
+        [Required]
+
         public string DeparmentDetail { get; set; }
+
         public bool DepartmentIsActive { get; set; }
+        [Required]
+
         public string DepartmentPhone { get; set; }
         public DateTime DepartmentCreatedDate { get; set; }
         public bool DepartmentIsDeleted { get; set; }

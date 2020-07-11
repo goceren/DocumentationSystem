@@ -1,160 +1,150 @@
-﻿@{
+﻿@model HomeModel
+@{
     ViewData["Title"] = "Home Page";
 }
+<div class="container mt-4">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-9">
+                @{
+                    if (Model.Documents != null)
+                    {
+                        foreach (var item in Model.Documents)
+                        {
+                            if (item.DocumentOpentoEveryone)
+                            {
+                                <div class="card card-widget">
+                                    <div class="card-header">
+                                        <div class="user-block mr-5">
+                                            <span><a style="font-size: medium;" asp-controller="Home" asp-action="Detail" asp-route-id="@item.DocumentId">@item.DocumentTitle</a></span><br />
+                                            <span style="font-size: small;">Son Güncellenme - @item.DocumentUpdatedTime.ToString("D")</span>
+                                        </div>
 
-    <div class="container mt-4">
-        <div class="content-wrapper">
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="card card-widget">
-                        <div class="card-header">
-                            <div class="user-block">
-                                <span class="username"><a style="font-size: small;" href="#">Jonathan Burke Jr.</a></span>
-                                <span class="description">Shared publicly - 7:30 PM Today</span>
-                            </div>
-                            <div class="card-tools">
-                                <span class="username mr-3">
-                                    <a style="color: black; font-size: small;" href="#">
-                                        Jonathan Burke
-                                        Jr.
-                                    </a>
-                                </span>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p style="font-size: small;">
-                                Far far away, behind the word mountains, far from the
-                                countries Vokalia and Consonantia, there live the blind
-                                texts. Separated they live in Bookmarksgrove right at
-                            </p>
+                                        <div class="card-tools">
+                                            <span class="username mr-3">
+                                                <a style="color: black; font-size: small;" asp-controller="Home" asp-action="Index" asp-route-id="@item.DepartmentId">
+                                                    @item.Department.DepartmentName
+                                                </a>
+                                            </span>
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <br />
+                                            <span><a style="font-size: small;" asp-controller="Home" asp-action="Index" asp-route-userId="@item.UserId">@item.User.NameSurname</a></span><br />
 
-                            <p style="font-size: small;">
-                                the coast of the Semantics, a large language ocean.
-                                A small river named Duden flows by their place and supplies
-                                it with the necessary regelialia. It is a paradisematic
-                                country, in which roasted parts of sentences fly into
-                                your mouth.
-                            </p>
-                        </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <p style="font-size: small;">
+                                            @if (item.DocumentDescription.Length < 500)
+                                            {
+                                                @item.DocumentSubtitle
+                                                <br />
+                                                <a style="color:blue; font-size: small; float: right" asp-controller="Home" asp-action="Detail" asp-route-id="@item.DocumentId">Devamını Gör</a>
+                                            }
+                                            else
+                                            {
+                                                @item.DocumentSubtitle.Substring(0, 500)
+                                                <br />
+                                                <a style="color:blue; font-size: small; float: right" asp-controller="Home" asp-action="Detail" asp-route-id="@item.DocumentId">Devamını Gör</a>
+
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                if (User.IsInRole("admin") || User.IsInRole("staff"))
+                                {
+                                    <div class="card card-widget">
+                                        <div class="card-header">
+                                            <div class="user-block mr-5">
+                                                <span><a style="font-size: medium;" asp-controller="Home" asp-action="Detail" asp-route-id="@item.DocumentId">@item.DocumentTitle</a></span><br />
+                                                <span style="font-size: small;">Son Güncellenme - @item.DocumentUpdatedTime.ToString("D")</span>
+                                            </div>
+                                            <div class="card-tools">
+                                                <span class="username mr-3">
+                                                    <a style="color: black; font-size: small;" asp-controller="Home" asp-action="Index" asp-route-id="@item.DepartmentId">
+                                                        @item.Department.DepartmentName
+                                                    </a>
+                                                </span>
+                                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <br />
+                                                <span><a style="font-size: small;" asp-controller="Home" asp-action="Index" asp-route-userId="@item.UserId">@item.User.NameSurname</a></span><br />
+
+
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <p style="font-size: small;">
+                                                @if (item.DocumentDescription.Length < 500)
+                                                {
+                                                    @item.DocumentSubtitle
+                                                    <br />
+                                                    <a style="color:blue; font-size: small; float: right" asp-controller="Home" asp-action="Detail" asp-route-id="@item.DocumentId">Devamını Gör</a>
+                                                }
+                                                else
+                                                {
+                                                    @item.DocumentSubtitle.Substring(0, 500)
+                                                    <br />
+                                                    <a style="color: blue; font-size: small; float: right" asp-controller="Home" asp-action="Detail" asp-route-id="@item.DocumentId">Devamını Gör</a>
+
+                                                }
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Departmanlar</h3>
                     </div>
-                    <div class="card card-widget">
-                        <div class="card-header">
-                            <div class="user-block">
-                                <span class="username"><a style="font-size: small;" href="#">Jonathan Burke Jr.</a></span>
-                                <span class="description">Shared publicly - 7:30 PM Today</span>
+                    @{
+                        if (Model.Departments != null)
+                        {
+                            <div class="card-body p-0">
+                                <ul class="nav nav-pills flex-column">
+                                    <li class="nav-item">
+                                        <a href="/" class="nav-link" style="color:@(ViewBag.selected == null ? "blue" : "");">
+                                            Hepsi
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="card-tools">
-                                <span class="username mr-3">
-                                    <a style="color: black; font-size: small;" href="#">
-                                        Jonathan Burke
-                                        Jr.
-                                    </a>
-                                </span>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p style="font-size: small;">
-                                Far far away, behind the word mountains, far from the
-                                countries Vokalia and Consonantia, there live the blind
-                                texts. Separated they live in Bookmarksgrove right at
-                            </p>
+                            foreach (var item in Model.Departments)
+                            {
+                                <div class="card-body p-0">
+                                    <ul class="nav nav-pills flex-column">
+                                        <li class="nav-item ">
+                                            <a asp-controller="Home" asp-action="Index" asp-route-id="@item.DepartmentId" style="color:@(ViewBag.selected == item.DepartmentId ? "blue" : "");" class="nav-link">
+                                                @item.DepartmentName
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                        }
+                    }
 
-                            <p style="font-size: small;">
-                                the coast of the Semantics, a large language ocean.
-                                A small river named Duden flows by their place and supplies
-                                it with the necessary regelialia. It is a paradisematic
-                                country, in which roasted parts of sentences fly into
-                                your mouth.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card card-widget">
-                        <div class="card-header">
-                            <div class="user-block">
-                                <span class="username"><a style="font-size: small;" href="#">Jonathan Burke Jr.</a></span>
-                                <span class="description">Shared publicly - 7:30 PM Today</span>
-                            </div>
-                            <div class="card-tools">
-                                <span class="username mr-3">
-                                    <a style="color: black; font-size: small;" href="#">
-                                        Jonathan Burke
-                                        Jr.
-                                    </a>
-                                </span>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p style="font-size: small;">
-                                Far far away, behind the word mountains, far from the
-                                countries Vokalia and Consonantia, there live the blind
-                                texts. Separated they live in Bookmarksgrove right at
-                            </p>
-
-                            <p style="font-size: small;">
-                                the coast of the Semantics, a large language ocean.
-                                A small river named Duden flows by their place and supplies
-                                it with the necessary regelialia. It is a paradisematic
-                                country, in which roasted parts of sentences fly into
-                                your mouth.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card card-widget">
-                        <div class="card-header">
-                            <div class="user-block">
-                                <span class="username"><a style="font-size: small;" href="#">Jonathan Burke Jr.</a></span>
-                                <span class="description">Shared publicly - 7:30 PM Today</span>
-                            </div>
-                            <div class="card-tools">
-                                <span class="username mr-3">
-                                    <a style="color: black; font-size: small;" href="#">
-                                        Jonathan Burke
-                                        Jr.
-                                    </a>
-                                </span>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p style="font-size: small;">
-                                Far far away, behind the word mountains, far from the
-                                countries Vokalia and Consonantia, there live the blind
-                                texts. Separated they live in Bookmarksgrove right at
-                            </p>
-
-                            <p style="font-size: small;">
-                                the coast of the Semantics, a large language ocean.
-                                A small river named Duden flows by their place and supplies
-                                it with the necessary regelialia. It is a paradisematic
-                                country, in which roasted parts of sentences fly into
-                                your mouth.
-                            </p>
-                        </div>
-                    </div>
+                    <!-- /.card-body -->
                 </div>
-                <div class="col-md-3">
-                    <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="vert-tabs-home-tab" data-toggle="pill" href="#vert-tabs-home" role="tab"
-                           aria-controls="vert-tabs-home" aria-selected="true">Home</a>
-                        <a class="nav-link" id="vert-tabs-profile-tab" data-toggle="pill" href="#vert-tabs-profile" role="tab"
-                           aria-controls="vert-tabs-profile" aria-selected="false">Profile</a>
-                        <a class="nav-link" id="vert-tabs-messages-tab" data-toggle="pill" href="#vert-tabs-messages" role="tab"
-                           aria-controls="vert-tabs-messages" aria-selected="false">Messages</a>
-                        <a class="nav-link" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-settings" role="tab"
-                           aria-controls="vert-tabs-settings" aria-selected="false">Settings</a>
-                    </div>
+                <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
+
+
                 </div>
             </div>
         </div>
     </div>
+</div>
